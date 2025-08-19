@@ -12,13 +12,13 @@
     </LogonTrigger>
 
     <!-- 7:00 PM Daily Trigger -->
-    <TimeTrigger>
+    <CalendarTrigger>
       <StartBoundary>2025-07-29T19:00:00</StartBoundary>
       <Enabled>true</Enabled>
       <ScheduleByDay>
         <DaysInterval>1</DaysInterval>
       </ScheduleByDay>
-    </TimeTrigger>
+    </CalendarTrigger>
   </Triggers>
   <Principals>
     <Principal id="Author">
