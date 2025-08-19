@@ -47,7 +47,7 @@
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>python</Command>
+      <Command>C:\Users\Clock Schedule\AppData\Local\Programs\Python\Python313\python.exe</Command>
       <Arguments>"C:\AutomationTools\schedule_opener\schedule_opener.py"</Arguments>
     </Exec>
   </Actions>
