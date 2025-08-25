@@ -29,6 +29,14 @@ def normalize_date(date_str):
     date_str = re.sub(r'\b0(\d)', r'\1', date_str)             # Remove leading zeros
     return re.sub(r'\s+', ' ', date_str).strip()               # Clean extra spaces
 
+def close_word():
+    """Close all running instances of Microsoft Word."""
+    try:
+        logging.info("🛑 Closing Microsoft Word if running...")
+        subprocess.run(["taskkill", "/IM", "WINWORD.EXE", "/F"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as e:
+        logging.error(f"❌ Failed to close Word: {str(e)}")
+
 def open_today_schedule():
     tomorrow = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%A %d %B %Y")
     tomorrow_normalized = normalize_date(tomorrow)
@@ -60,6 +68,9 @@ def open_today_schedule():
                 if normalized_file_name == tomorrow_normalized:
                     full_file_path = os.path.join(folder_path, file_name)
                     logging.info(f"✅ MATCH FOUND: {full_file_path}")
+
+                    # Close any open Word instances before opening
+                    close_word()
 
                     # Open file with default Windows application
                     os.startfile(full_file_path)
